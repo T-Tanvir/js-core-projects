@@ -47,7 +47,10 @@ const btnI = document.getElementById("btnI");
 const btnD = document.getElementById("btnD");
 const btnR = document.getElementById("btnR");
 
-function color() {
+numCtr.innerText = localStorage.getItem("numStr") || 0;
+numCtr.style.color = localStorage.getItem("colrStr");
+function colrAndStr() {
+  localStorage.setItem("numStr", numCtr.innerText);
   if (numCtr.innerText > 0) {
     numCtr.style.color = "white";
   } else {
@@ -56,20 +59,21 @@ function color() {
   if (numCtr.innerText < 0) {
     numCtr.style.color = "black";
   }
+  localStorage.setItem("colrStr", numCtr.style.color);
 }
 function inc() {
   numCtr.innerText = Number(numCtr.innerText) + 1;
-  color();
+  colrAndStr();
 }
 
 function dic() {
   numCtr.innerText = Number(numCtr.innerText) - 1;
-  color();
+  colrAndStr();
 }
 
 function rst() {
   numCtr.innerText = 0;
-  color();
+  colrAndStr();
 }
 
 btnI.addEventListener("click", inc);
